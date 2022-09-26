@@ -1,0 +1,64 @@
+/**
+ *
+ * This program will ask the user for the size of an array, and then the integers inside
+ * the array.  Next, it will ask the user for a beginning index and an ending index.  It
+ * will then recursively reverse the numbers between the indices.
+ *
+ * @author: Brandon Kirch
+ * @version: 9/26/2022
+ */
+
+//import scanner
+import java.util.Scanner;
+
+public class reverseTest {
+    public static void main(String[] args){
+        //initialize scanner object
+        Scanner in = new Scanner(System.in);
+
+        //prompt user for arary size
+        System.out.println("Enter size of array: ");
+        int size = in.nextInt();
+
+        //create array of user input size
+        int[] a = new int[size];
+
+        //for loop to fill the array with user input integers
+        for (int i = 0; i < size; i++){
+            System.out.println("Enter an array integer: ");
+            a[i]=in.nextInt();
+        }
+
+        //prompt user to enter the beginning index
+        System.out.println("Enter the beginning index: ");
+        int low = in.nextInt();
+
+        //prompt user to input ending index
+        System.out.println("Enter the ending index: ");
+        int high = in.nextInt();
+
+        //method call for our recursive method
+        reverseArray(a, low, high);
+
+        //for loop to display the new array
+        for (int i = 0; i < size; i++) {
+            System.out.print(a[i]);
+        }
+
+        //close the scanner object
+        in.close();
+    }
+    public static int[] reverseArray(int[] a, int low, int high){
+        //base case when our low index is no longer low
+        if (low >= high) {
+            return a;
+        } else {
+            int temp = a[low];
+            a[low] = a[high];
+            a[high] = temp;
+
+            //recursive call
+            return reverseArray(a, low + 1, high - 1);
+        }
+    }
+}
