@@ -1,0 +1,73 @@
+/**
+ *This program will ask for a user input array with user input values.  The program will then
+ * recursively calculate the largest and smallest numbers in the array and put them out in
+ * the console through use of a recursive helper method.
+ *
+ * @author: Brandon Kirch
+ * @version: 9/26/2022
+ */
+import java.util.Scanner;
+
+public class smallestLargest {
+    public static void main(String[] args){
+        //instantiate scanner object
+        Scanner in = new Scanner(System.in);
+
+        //prompt user for the size of the array
+        System.out.println("How big is the array?");
+        int size = in.nextInt();
+
+        //initialize array
+        int[] a = new int[size];
+
+        //iterate through the array with user input values
+        for (int i = 0; i < size; i++){
+            System.out.println("What is the next number in the array?");
+            a[i] = in.nextInt();
+        }
+
+        //recursive method call
+        smallestLargest(a);
+
+        //close the scanner
+        in.close();
+    }
+
+    //this is our primary recursive method
+    public static void smallestLargest(int[] a) {
+        //recursive helper method
+        smallestLargest(a, 0);
+    }
+
+    //recursive helper method uses an index to run through the array
+    public static void smallestLargest(int[] a, int index) {
+        //outcome if array has only one variable
+        if (a.length == 1) {
+            System.out.println("Smallest is " + a[0]);
+            System.out.println("Largest is " + a[0]);
+        
+        //outcome if array has exactly 2 variables
+        } else if (a.length == 2) {
+            if (a[0] > a[1]) {
+                System.out.println("Smallest is " + a[1]);
+                System.out.println("Largest is " + a[0]);
+            } else {
+                System.out.println("Smallest is " + a[0]);
+                System.out.println("Largest is " + a[1]);
+            }
+        
+        //base case for recursive method
+        } else if (a.length == index) {
+            System.out.println("Smallest is " + a[0]);
+            System.out.println("Largest is " + a[1]);
+        } else if (a[index] < a[0]) {
+            a[0] = a[index];
+            smallestLargest(a, index + 1);
+        } else if (a[index] > a[1]) {
+            a[1] = a[index];
+            smallestLargest(a, index + 1);
+        } else {
+            smallestLargest(a, index + 1);
+        }
+    }
+}
