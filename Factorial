@@ -1,0 +1,31 @@
+/**
+ * This program will calculate how many different groups of a size
+ * can be made from a larger pool of numbers (4 from a pool of 10
+ * in this case) recursively.
+ * 
+ * @author:Brandon Kirch
+ * @version: 9/27/2022
+*/
+
+ 
+public class factorial {
+    public static void main(String args[]) {
+      //final output from method call
+      System.out.println(c(10, 4));
+    }
+    
+    //this method handles the calculations
+    public static int c(int n, int r){
+        //returns the calculations of numbers retrieved from our recursive method
+        return (factorial(n)/(factorial(r)*(factorial(n-r))));
+    }  
+    
+    //recursive method for calculating factorials
+    public static int factorial(int n) {
+      if (n == 1){
+        return 1;
+      } else {
+        return n * factorial(n-1);
+      }
+   }
+}
